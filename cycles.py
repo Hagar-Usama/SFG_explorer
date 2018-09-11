@@ -1,13 +1,11 @@
 # https://stackoverflow.com/questions/6499327/the-pythonic-way-to-generate-pairs
 #https://stackoverflow.com/questions/10202938/how-do-i-use-method-overloading-in-python
 from typing import List, Any, Tuple
-
 import networkx as nx
-import matplotlib.pyplot as plt
 import itertools
 from functools import reduce
 
-# Creating a digraph
+# ////// 1) Creating a digraph //////////////
 
 G = nx.DiGraph()
 
@@ -24,17 +22,26 @@ G.add_edges_from(
 cy = list(nx.simple_cycles(G))
 
 # getting forward paths : start and end points are required
+print('***Forward paths*** :')
 p = list(nx.all_simple_paths(G, "y1", "y5"))
 
+#///////////////Digraph created/////////////////////////
+
+# printing paths and cycles:
 print(p)
-print("cycles R :")
+print('***Cycles*** :')
 print(cy)
 
 # trying getting possible combinations
+'''
+
 stuff = [1, 2, 3]
 for L in range(0, len(stuff) + 1):
     for subset in itertools.combinations(stuff, L):
         print(subset)
+
+
+'''
 
 
 # trying to separate cycles into edges :
@@ -63,18 +70,6 @@ def cycle_to_edge(x: list):
     return edges
 
 
-
-edge_of_cy = cycle_to_edge(cy[1])
-print('edges of cycle 1 :' + str(edge_of_cy))
-for i in cy:
-    cycle_to_edge(i)
-    print('****')
-
-print('>>>>>><<<<<<<')
-print(set(cy[0]).intersection(cy[1]))
-
-print(cy.__len__())
-
 # creates a list containing number of loops to get combinations between 'em
 def loop_num_list(cycles_no):
     combin = []
@@ -83,7 +78,6 @@ def loop_num_list(cycles_no):
     return combin
 
 # get list of combinations for(2 , 3 ,4 ....)
-
 def get_loop_combin(no_of_loops:int,loops:list):
     pairs = []
     cy_no = loops.__len__()
@@ -92,14 +86,6 @@ def get_loop_combin(no_of_loops:int,loops:list):
         pairs.append((loops[pair[0]],loops[pair[1]]))
     return pairs
 
-
-loops_com = get_loop_combin(3,cy)
-print('//////////////////')
-print(loops_com)
-print('/////////////////')
-
-
-d = [(1, 2, 3, 4), (2, 3, 4), (3, 4, 5, 6, 7)]
 
 def is_intersected(loops_com):
         inter = list(reduce(set.intersection, [set(item) for item in loops_com]))
@@ -127,10 +113,16 @@ def get_intersected(loops_com:list):
     #print(method_two.__len__())
     #print(method_two)
     return method_two
-int_loops = get_intersected(loops_com)
-print(int_loops)
 
 
+
+
+d = [(1, 2, 3, 4), (2, 3, 4), (3, 4, 5, 6, 7)]
+
+
+'''
 trial_loop_com = list(itertools.combinations(range(6), 3))
 print(trial_loop_com)
+
+'''
 
