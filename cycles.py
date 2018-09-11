@@ -43,47 +43,47 @@ for L in range(0, len(stuff) + 1):
 
 '''
 
-
-# trying to separate cycles into edges :
+# 2) functions on :
+# trying to separate cycles into edges : (all right) >> BUT mind invalid cycles
 # done @ 23:32 9/9/2018 :
 def cycle_to_edge(x: list):
     len = x.__len__();
     edges: List[Tuple[Any, Any]] = []
-    print(len)
+    #print(len)
 
     if len == 1 :
-        print("({} , {})".format(x[0] , x[0]))
+        #print("({} , {})".format(x[0] , x[0]))
         edges.append((x[0] ,x[0]))
     elif len < 0 :
         print('Invalid Cycle')
     elif len == 2:
-        print('({} , {})'.format(x[0],x[1]))
+        #print('({} , {})'.format(x[0],x[1]))
         edges.append((x[0] ,x[1]))
     else:
         for i in range(len-1):
-            print('({} , {})'.format(x[i],x[i+1]))
+            #print('({} , {})'.format(x[i],x[i+1]))
             edges.append((x[i] ,x[i+1]))
 
-        print('({} , {})'.format(x[len-1],x[0]))
+        #print('({} , {})'.format(x[len-1],x[0]))
         edges.append((x[len-1] ,x[0]))
 
     return edges
 
 
-# creates a list containing number of loops to get combinations between 'em
+# creates a list containing number of indexes of loops to get combinations between 'em later : Simple enough to be right
 def loop_num_list(cycles_no):
     combin = []
     for i in range(cycles_no):
         combin.append(i);
     return combin
 
-# get list of combinations for(2 , 3 ,4 ....)
+# get list of combinations for(2 , 3 ,4 ....)loops
 def get_loop_combin(no_of_loops:int,loops:list):
-    pairs = []
+    pairs = [] # maybe name isn't describtive >> change it to tuple
     cy_no = loops.__len__()
     loop_num = loop_num_list(cy_no)
     for pair in itertools.combinations(loop_num,no_of_loops):
-        pairs.append((loops[pair[0]],loops[pair[1]]))
+        pairs.append((loops[pair[0]],loops[pair[1]])) # problem is here: touple maybe 3,4,.. elements..not just 2
     return pairs
 
 
@@ -126,3 +126,11 @@ print(trial_loop_com)
 
 '''
 
+# Getting edges of cyles:
+print('****edges of cycles****')
+for i in cy :
+    print(cycle_to_edge(i))
+# loop_num :
+print('***loop_num_list trial***')
+lnc = loop_num_list(3)
+print(lnc)
