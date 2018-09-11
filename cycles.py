@@ -100,7 +100,6 @@ print('/////////////////')
 
 
 d = [(1, 2, 3, 4), (2, 3, 4), (3, 4, 5, 6, 7)]
-print("See what if intersected :")
 
 def is_intersected(loops_com):
         inter = list(reduce(set.intersection, [set(item) for item in loops_com]))
@@ -128,11 +127,10 @@ def get_intersected(loops_com:list):
     #print(method_two.__len__())
     #print(method_two)
     return method_two
-
-print(loops_com)
 int_loops = get_intersected(loops_com)
 print(int_loops)
 
 
-
+trial_loop_com = list(itertools.combinations(range(6), 3))
+print(trial_loop_com)
 
