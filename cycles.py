@@ -1,5 +1,6 @@
 # https://stackoverflow.com/questions/6499327/the-pythonic-way-to-generate-pairs
 #https://stackoverflow.com/questions/10202938/how-do-i-use-method-overloading-in-python
+#https://stackoverflow.com/questions/1708510/python-list-vs-tuple-when-to-use-each
 from typing import List, Any, Tuple
 import networkx as nx
 import itertools
@@ -77,13 +78,23 @@ def loop_num_list(cycles_no):
         combin.append(i);
     return combin
 
+
+# converting list of indexes into a list of cycles or whatever:
+def index_to_list(indexes:list , take:tuple):
+    converted = []
+    for i in range(indexes.__len__()):
+        converted.append(take[indexes[i]])
+    return converted
+
+
+
 # get list of combinations for(2 , 3 ,4 ....)loops
 def get_loop_combin(no_of_loops:int,loops:list):
     pairs = [] # maybe name isn't describtive >> change it to tuple
     cy_no = loops.__len__()
     loop_num = loop_num_list(cy_no)
     for pair in itertools.combinations(loop_num,no_of_loops):
-        pairs.append((loops[pair[0]],loops[pair[1]])) # problem is here: touple maybe 3,4,.. elements..not just 2
+          pairs.append(index_to_list(pair,loops))
     return pairs
 
 
@@ -134,3 +145,7 @@ for i in cy :
 print('***loop_num_list trial***')
 lnc = loop_num_list(3)
 print(lnc)
+
+# get_loop_combin :
+print('***get_loop_combine***')
+print(get_loop_combin(2,cy))
