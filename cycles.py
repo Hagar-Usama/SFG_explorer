@@ -167,7 +167,6 @@ print(loop_com)
 print('***get_intersected***')
 print(get_intersected(loop_com))
 
-get_intersected_loops_to_path(p[0],cy)
-
+# get_intersected_loops_to_path
 print("***get_intersected_loops_to_path***")
 print(get_intersected_loops_to_path(p[0],cy))
