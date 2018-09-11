@@ -17,8 +17,7 @@ G.add_nodes_from(["y1", "y2", "y3", "y4", "y5"])
 # adding a list of edges :
 
 G.add_edges_from(
-    [("y1", "y2"), ("y2", "y3"), ("y3", "y4"), ("y4", "y5"), ("y3", "y5"), ("y5", "y1"), ("y4", "y2"), ("y5", "y3"),
-     ('y1', 'y1')])
+    [("y1", "y2"), ("y2", "y3"), ("y3", "y4"), ("y4", "y5"), ("y5", "y3"), ("y5", "y1"), ("y4", "y2")])
 
 # Return a list of cycles (even self loops):
 
@@ -84,38 +83,56 @@ def loop_num_list(cycles_no):
     return combin
 
 # get list of combinations for(2 , 3 ,4 ....)
-def get_loop_comb(loop_num:list,no_of_loops:int):
-    pairs = []
-    for pair in itertools.combinations(loop_num,no_of_loops):
-        pairs.append(pair)
-    return pairs
 
-def get_loop_combin(cy_no,no_of_loops:int,loops:list):
+def get_loop_combin(no_of_loops:int,loops:list):
     pairs = []
+    cy_no = loops.__len__()
     loop_num = loop_num_list(cy_no)
     for pair in itertools.combinations(loop_num,no_of_loops):
         pairs.append((loops[pair[0]],loops[pair[1]]))
     return pairs
 
 
-lo_num = loop_num_list(5);
-print(lo_num)
-
-combinations_cy = get_loop_comb(lo_num, 3)
-
-loops_com = get_loop_combin(5,2,cy)
+loops_com = get_loop_combin(3,cy)
 print('//////////////////')
 print(loops_com)
 print('/////////////////')
-print(combinations_cy)
 
 
 d = [(1, 2, 3, 4), (2, 3, 4), (3, 4, 5, 6, 7)]
+print("See what if intersected :")
 
+def is_intersected(loops_com):
+        inter = list(reduce(set.intersection, [set(item) for item in loops_com]))
+        return inter if inter.__len__()>0 else False
 
-inter = list(reduce(set.intersection, [set(item) for item in loops_com[0]]))
+def get_intersected(loops_com:list):
+    intersected = []
+    '''
+    
+    even_indices = [i for i, elem in loops_com if (is_intersected(elem)) != False]
+    print("Even_ind")
+    print(even_indices)
 
-print(inter)
+    print(even_indices.__len__())
+    
+    '''
+
+    method_two = []
+    for i in range(loops_com.__len__()):
+        inter = list(reduce(set.intersection, [set(item) for item in loops_com[i]]))
+        if inter.__len__() != 0 : #if there is an intersection
+            method_two.append(loops_com[i])
+
+    #print("Method Two")
+    #print(method_two.__len__())
+    #print(method_two)
+    return method_two
+
+print(loops_com)
+int_loops = get_intersected(loops_com)
+print(int_loops)
+
 
 
 
