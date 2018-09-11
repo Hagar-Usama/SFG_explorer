@@ -16,7 +16,7 @@ G.add_nodes_from(["y1", "y2", "y3", "y4", "y5"])
 # adding a list of edges :
 
 G.add_edges_from(
-    [("y1", "y2"), ("y2", "y3"), ("y3", "y4"), ("y4", "y5"), ("y5", "y3"), ("y5", "y1"), ("y4", "y2")])
+    [("y1", "y2"), ("y2", "y3"), ("y3", "y4"), ("y4", "y5"), ("y5", "y3"), ("y5", "y1"), ("y4", "y2") ,('y1','y1')])
 
 # Return a list of cycles (even self loops):
 
@@ -44,7 +44,8 @@ for L in range(0, len(stuff) + 1):
 
 '''
 
-# 2) functions on :
+#//////////////////// 2) functions used //////////////////// :
+
 # trying to separate cycles into edges : (all right) >> BUT mind invalid cycles
 # done @ 23:32 9/9/2018 :
 def cycle_to_edge(x: list):
@@ -97,11 +98,15 @@ def get_loop_combin(no_of_loops:int,loops:list):
           pairs.append(index_to_list(pair,loops))
     return pairs
 
-
+# see if combinations of loops are intersected, if so, it returns intersection!!! else returns false
 def is_intersected(loops_com):
         inter = list(reduce(set.intersection, [set(item) for item in loops_com]))
         return inter if inter.__len__()>0 else False
+# see if the loop is intersected with the path;returns true/false
+def is_intersected(path:list , loop:list):
+    return True if set(path)&set(loop)  else False
 
+#returns a list containing tuples of intersected loops
 def get_intersected(loops_com:list):
     intersected = []
     '''
@@ -126,6 +131,13 @@ def get_intersected(loops_com:list):
     return method_two
 
 
+# gets intersection between a path and a loop; returns list of loops intersected with this path
+def get_intersected_loops_to_path(path:list, loops:list):
+    intersected = []
+    for i in range(loops.__len__()):
+        #print(set(path)&set(loops[i]))
+        if(is_intersected(path,loops[i])):intersected.append(loops[i])
+    return intersected if intersected.__len__() !=0 else False
 
 
 d = [(1, 2, 3, 4), (2, 3, 4), (3, 4, 5, 6, 7)]
@@ -148,4 +160,14 @@ print(lnc)
 
 # get_loop_combin :
 print('***get_loop_combine***')
-print(get_loop_combin(2,cy))
+loop_com = get_loop_combin(3,cy)
+print(loop_com)
+
+# get_intersected:
+print('***get_intersected***')
+print(get_intersected(loop_com))
+
+get_intersected_loops_to_path(p[0],cy)
+
+print("***get_intersected_loops_to_path***")
+print(get_intersected_loops_to_path(p[0],cy))
