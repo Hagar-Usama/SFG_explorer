@@ -47,7 +47,7 @@ def index_to_list(indexes:list , take:tuple):
     return converted
 
 
-
+'''
 # get list of combinations for(2 , 3 ,4 ....)loops
 def get_loop_combin(no_of_loops:int,loops:list):
     pairs = [] # maybe name isn't describtive >> change it to tuple
@@ -59,6 +59,10 @@ def get_loop_combin(no_of_loops:int,loops:list):
     for pair in itertools.combinations(loop_num,no_of_loops):
           pairs.append(index_to_list(pair,loops))
     return pairs
+
+
+'''
+
 
 # see if combinations of loops are intersected, if so, it returns intersection!!! else returns false
 def is_intersected(loops_com):
