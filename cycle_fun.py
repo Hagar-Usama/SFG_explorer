@@ -52,7 +52,10 @@ def index_to_list(indexes:list , take:tuple):
 def get_loop_combin(no_of_loops:int,loops:list):
     pairs = [] # maybe name isn't describtive >> change it to tuple
     cy_no = loops.__len__()
-    loop_num = loop_num_list(cy_no)
+    if(no_of_loops == 1 ):
+        return loops
+    else:
+        loop_num = loop_num_list(cy_no)
     for pair in itertools.combinations(loop_num,no_of_loops):
           pairs.append(index_to_list(pair,loops))
     return pairs
