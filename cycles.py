@@ -93,10 +93,15 @@ def index_to_list(indexes:list , take:tuple):
 def get_loop_combin(no_of_loops:int,loops:list):
     pairs = [] # maybe name isn't describtive >> change it to tuple
     cy_no = loops.__len__()
-    loop_num = loop_num_list(cy_no)
+    if(no_of_loops == 1 ):
+        return loops
+    else:
+        loop_num = loop_num_list(cy_no)
     for pair in itertools.combinations(loop_num,no_of_loops):
           pairs.append(index_to_list(pair,loops))
     return pairs
+
+
 
 # see if combinations of loops are intersected, if so, it returns intersection!!! else returns false
 def is_intersected(loops_com):
@@ -160,7 +165,7 @@ print(lnc)
 
 # get_loop_combin :
 print('***get_loop_combine***')
-loop_com = get_loop_combin(3,cy)
+loop_com = get_loop_combin(1,cy)
 print(loop_com)
 
 # get_intersected:
