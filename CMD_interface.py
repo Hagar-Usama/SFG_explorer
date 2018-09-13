@@ -1,4 +1,5 @@
 #https://stackoverflow.com/questions/43442927/user-input-a-list-of-tuples/43443138
+#https://stackoverflow.com/questions/961263/two-values-from-one-input-in-python
 import cycle_fun
 import networkx as nx
 from re import findall
@@ -35,7 +36,16 @@ edges =edge_str_to_tuples(edge_str)
 G.add_edges_from(edge_str_to_tuples(edge_str))
 print(edges)
 
+s,t = input('Enter Start and End points form the SFG , ex: y1 y2\n').split()
+print('Start point = {} , End point = {}'.format(s,t))
 
+print("Now let's Solving")
+
+paths = list(nx.all_simple_paths(G,s,t))
+print('🔢🔢** \u2776 Forward Paths **')
+
+cycles = list(nx.simple_cycles(G));
+print('🔢🔢** \u2777  Cycles **')
 
 # imp expression
 #x = list(map(str,input().split()))
