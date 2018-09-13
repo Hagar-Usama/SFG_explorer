@@ -89,18 +89,16 @@ def index_to_list(indexes:list , take:tuple):
 
 
 
-# get list of combinations for(2 , 3 ,4 ....)loops
-def get_loop_combin(no_of_loops:int,loops:list):
-    pairs = [] # maybe name isn't describtive >> change it to tuple
-    cy_no = loops.__len__()
-    if(no_of_loops == 1 ):
-        return loops
+# get list of combinations for (1,2,3,4,...)loops
+def get_loop_combin(loops_list:list , no_of_loops):
+    """ this function gets list of combinations for (1,2,3,...) loops """
+    tuples = []
+    if(no_of_loops ==1):
+        return loops_list
     else:
-        loop_num = loop_num_list(cy_no)
-    for pair in itertools.combinations(loop_num,no_of_loops):
-          pairs.append(index_to_list(pair,loops))
-    return pairs
-
+      for tup in itertools.combinations(loops_list, no_of_loops):
+          tuples.append(tup)
+      return tuples
 
 
 # see if combinations of loops are intersected, if so, it returns intersection!!! else returns false
@@ -144,6 +142,8 @@ def get_intersected_loops_to_path(path:list, loops:list):
         if(is_intersected(path,loops[i])):intersected.append(loops[i])
     return intersected if intersected.__len__() !=0 else False
 
+def get_max_loop_intersection(loops:list):
+    pass
 
 d = [(1, 2, 3, 4), (2, 3, 4), (3, 4, 5, 6, 7)]
 
@@ -165,7 +165,7 @@ print(lnc)
 
 # get_loop_combin :
 print('***get_loop_combine***')
-loop_com = get_loop_combin(1,cy)
+loop_com = get_loop_combin(cy,3)
 print(loop_com)
 
 # get_intersected:
@@ -175,3 +175,7 @@ print(get_intersected(loop_com))
 # get_intersected_loops_to_path
 print("***get_intersected_loops_to_path***")
 print(get_intersected_loops_to_path(p[0],cy))
+
+nodes = ['y1' , 'y2','y3','y4','y5']
+
+
