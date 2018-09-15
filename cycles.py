@@ -145,10 +145,14 @@ def get_intersected_loops_to_path(path:list, loops:list):
 def get_max_loop_intersection(loops:list):
     """ computes max loops required by getting intersection for each loop_no"""
     max = 0
+    inter_loops = []
     for i in range (1,7):
-        if get_intersected(get_loop_combin(loops ,i)) !=False:
+        g_inter = get_intersected(get_loop_combin(loops ,i))
+        if g_inter !=False:
             max+=1
-    return max
+            inter_loops.append(g_inter)
+    return [max , inter_loops]
+
 
 
 d = [(1, 2, 3, 4), (2, 3, 4), (3, 4, 5, 6, 7)]
@@ -186,7 +190,8 @@ print(get_intersected_loops_to_path(p[0],cy))
 
 # get_max_loop_intersection
 print('***get_max_loop_intersection***')
-print(get_max_loop_intersection(cy))
+[max , inter_loops] = get_max_loop_intersection(cy)
 nodes = ['y1' , 'y2','y3','y4','y5']
-
-print(nodes)
+print (max)
+#print(inter_loops)
+print(inter_loops[1])
