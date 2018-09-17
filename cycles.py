@@ -2,6 +2,8 @@
 #https://stackoverflow.com/questions/10202938/how-do-i-use-method-overloading-in-python
 #https://stackoverflow.com/questions/1708510/python-list-vs-tuple-when-to-use-each
 #https://stackoverflow.com/questions/209840/convert-two-lists-into-a-dictionary-in-python
+#https://docs.sympy.org/latest/tutorial/manipulation.html
+
 import itertools
 from functools import reduce
 from typing import List, Any, Tuple
@@ -16,12 +18,16 @@ G = nx.DiGraph()
 G.add_nodes_from(["y1", "y2", "y3", "y4", "y5"])
 
 # adding a list of edges :
+y1 ,y2,y3,y4,y5 = syms('y1 y2 y3 y4 y5')
 
 G.add_edges_from(
-    [("y1", "y2"), ("y2", "y3"), ("y3", "y4"), ("y4", "y5"), ("y5", "y3"), ("y5", "y1"), ("y4", "y2") ,('y1','y1')])
+    [('y1' , 'y2'), ("y2", "y3"), ("y3", "y4"), ("y4", "y5"), ("y5", "y3"), ("y5", "y1"), ("y4", "y2") ,('y1','y1')])
+
+
 
 # Values of edges:
 val = ['g1','g2','g3','g4',-1,'h1','h2']
+
 
 print('******edges*****')
 print(G.edges)
@@ -88,6 +94,12 @@ def cycle_to_edge(x: list):
 
     return edges
 
+
+def loop_cycle_to_edge(loops:list):
+    """ takes a list of cycles and covert them into edges"""
+    edges = []
+    for loop in loops:
+        edges.append(cycle_to_edge(loop))
 
 # creates a list containing number of indexes of loops to get combinations between 'em later : Simple enough to be right
 def loop_num_list(cycles_no):
@@ -212,5 +224,5 @@ nodes = ['y1' , 'y2','y3','y4','y5']
 print (max)
 #print(inter_loops)
 for i in range(inter_loops.__len__()):
-
     print(inter_loops[i])
+
