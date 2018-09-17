@@ -10,6 +10,7 @@ class Edge:
 
         Edge.num_of_edges += 1
 
+
     def getValue(self,start , end):
         return self.value
 
