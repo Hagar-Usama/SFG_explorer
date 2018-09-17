@@ -1,10 +1,12 @@
 # https://stackoverflow.com/questions/6499327/the-pythonic-way-to-generate-pairs
 #https://stackoverflow.com/questions/10202938/how-do-i-use-method-overloading-in-python
 #https://stackoverflow.com/questions/1708510/python-list-vs-tuple-when-to-use-each
-from typing import List, Any, Tuple
-import networkx as nx
+#https://stackoverflow.com/questions/209840/convert-two-lists-into-a-dictionary-in-python
 import itertools
 from functools import reduce
+from typing import List, Any, Tuple
+import networkx as nx
+from sympy import symbols as syms , simplify
 
 # ////// 1) Creating a digraph //////////////
 
@@ -17,6 +19,21 @@ G.add_nodes_from(["y1", "y2", "y3", "y4", "y5"])
 
 G.add_edges_from(
     [("y1", "y2"), ("y2", "y3"), ("y3", "y4"), ("y4", "y5"), ("y5", "y3"), ("y5", "y1"), ("y4", "y2") ,('y1','y1')])
+
+# Values of edges:
+val = ['g1','g2','g3','g4',-1,'h1','h2']
+
+print('******edges*****')
+print(G.edges)
+
+edges_dict =  dict(zip(G.edges, val))
+
+print('******edges values *****')
+print(edges_dict)
+
+sy = syms('x'); y= syms('y')
+
+print(simplify(sy+2*y*sy)/sy)
 
 # Return a list of cycles (even self loops):
 
@@ -94,7 +111,7 @@ def get_loop_combin(loops_list:list , no_of_loops):
     """ this function gets list of combinations for (1,2,3,...) loops """
     tuples = []
     if(no_of_loops ==1):
-        return loops_list
+        return tuple(loops_list)
     else:
       for tup in itertools.combinations(loops_list, no_of_loops):
           tuples.append(tup)
@@ -194,4 +211,6 @@ print('***get_max_loop_intersection***')
 nodes = ['y1' , 'y2','y3','y4','y5']
 print (max)
 #print(inter_loops)
-print(inter_loops[1])
+for i in range(inter_loops.__len__()):
+
+    print(inter_loops[i])
