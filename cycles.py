@@ -100,6 +100,11 @@ def loop_cycle_to_edge(loops:list):
     edges = []
     for loop in loops:
         edges.append(cycle_to_edge(loop))
+    return edges
+
+def get_edge_val(edges:list , edges_dictionary:dict):
+    edges_val = []
+    pass
 
 # creates a list containing number of indexes of loops to get combinations between 'em later : Simple enough to be right
 def loop_num_list(cycles_no):
@@ -226,3 +231,12 @@ print (max)
 for i in range(inter_loops.__len__()):
     print(inter_loops[i])
 
+print("****Cycles****")
+for i in range (inter_loops.__len__()):
+    loops = loop_cycle_to_edge(inter_loops[i])
+    for loop in loops:
+        print(loop)
+
+print("*** cycle to edge ****")
+cycless = [ 'y1' , 'y2','y3']
+print(cycle_to_edge(cycless))
