@@ -21,26 +21,3 @@ class Edge:
         else:
             print("not such an Edge!")
             return False
-
-ed = Edge('y1','y2','g1')
-ed2 = Edge('y1','y3','h1')
-ed3= Edge('y1','y4','g5')
-my_edges = []
-my_edges.append(ed)
-my_edges.append(ed2)
-my_edges.append(ed3)
-my_edges.append(Edge('y1' ,'y5','-1'))
-
-x =my_edges[3]
-print(x.value)
-
-# Use format for final answer :)
-print('{}x{}'.format(ed.start , ed.end))
-
-# getting value :
-e = Edge.getValue(ed ,'y1', 'y3')
-print("e is " + e)
-print(ed.value)
-
-x = ed.isTheEdge('y2', 'y1')
-print(x)
