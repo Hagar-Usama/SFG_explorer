@@ -161,10 +161,10 @@ def get_intersected(loops_com:list):
         inter = list(reduce(set.intersection, [set(item) for item in loops_com[i]]))
         if inter.__len__() != 0 : #if there is an intersection
             method_two.append(loops_com[i])
+            print("__________Method 2_____________")
+            print(loops_com[i])
 
-    #print("Method Two")
-    #print(method_two.__len__())
-    #print(method_two)
+
     return method_two if method_two.__len__() !=0 else False
 
 
@@ -210,11 +210,11 @@ print(lnc)
 
 # get_loop_combin :
 print('***get_loop_combine***')
-loop_com = get_loop_combin(cy,4)
+loop_com = get_loop_combin(cy,3)
 print(loop_com)
 
 # get_intersected:
-print('***get_intersected***')
+print('\n***get_intersected***')
 gin= get_intersected(loop_com)
 print(get_intersected(loop_com))
 
@@ -230,13 +230,3 @@ print (max)
 #print(inter_loops)
 for i in range(inter_loops.__len__()):
     print(inter_loops[i])
-
-print("****Cycles****")
-for i in range (inter_loops.__len__()):
-    loops = loop_cycle_to_edge(inter_loops[i])
-    for loop in loops:
-        print(loop)
-
-print("*** cycle to edge ****")
-cycless = [ 'y1' , 'y2','y3']
-print(cycle_to_edge(cycless))
