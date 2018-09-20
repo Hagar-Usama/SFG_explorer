@@ -43,13 +43,7 @@ print("***dict it***")
 print(edges_dict[('y1','y2')])
 
 sy = syms('x'); y= syms('y')
-f1,f2,f3,f4 = syms('g1 g2 g3 g4')
-st_sy = ['g1','g2','g3','g4']
-sy_val = [f1,f2,f3,f4]
-sy_dict = dict(zip(st_sy ,sy_val ))
 
-print(sy_dict['g2']+f2)
-print(simplify(sy+2*y*sy)/sy)
 
 # Return a list of cycles (even self loops):
 
@@ -78,19 +72,20 @@ for L in range(0, len(stuff) + 1):
 '''
 
 #//////////////////// 2) functions used //////////////////// :
-
-# trying to separate cycles into edges : (all right) >> BUT mind invalid cycles
-# done @ 23:32 9/9/2018 :
 def symbolize(edge_val:list):
     """converts a list of strings to symbols"""
     sym_list = []
-    for i in range(edge_val.__len__()):
-         print('g')
-         x = syms(edge_val[i]) if type(edge_val[i]) != int else x=edge_val[i]
-         print(x)
-         #sym_list.append(x)
-    #return sym_list
+    for i in edge_val:
+        if type(i) == int: #might be double float !!
+            sym_list.append(i)
+        else:
+            print('not a number')
+            x= syms(i)
+            sym_list.append(x)
+    return sym_list
 
+# trying to separate cycles into edges : (all right) >> BUT mind invalid cycles
+# done @ 23:32 9/9/2018 :
 
 def cycle_to_edge(x: list):
     len = x.__len__();
@@ -311,6 +306,18 @@ print('>>>>>>><<<<<<<<<<<<<<<')
 big = big_list_edge_val(inter_loops,edges_dict)
 for b in big :
     print(b)
+'''
+type(edge_val[i]) != int:
+edge_val = ['g1','g2','g3','g4']
+sym_list = []
+for i in range(edge_val.__len__()):
 
-print(symbolize(val))
+        x = syms(edge_val[i])
+    #else:
+     #   x=edge_val[i]
+
+   # print(x)
+
+'''
+
 
