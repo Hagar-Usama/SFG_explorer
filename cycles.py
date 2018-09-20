@@ -26,7 +26,7 @@ G.add_edges_from(
 
 
 # Values of edges:
-val = ['g1','g2','g3','g4',-1,'h1','h2']
+val = ['g1','g2','g3','g4',-1,'h1','h2','h3']
 
 
 print('******edges*****')
@@ -36,6 +36,9 @@ edges_dict =  dict(zip(G.edges, val))
 
 print('******edges values *****')
 print(edges_dict)
+
+print("***dict it***")
+print(edges_dict[('y1','y2')])
 
 sy = syms('x'); y= syms('y')
 
@@ -93,6 +96,38 @@ def cycle_to_edge(x: list):
         edges.append((x[len-1] ,x[0]))
 
     return edges
+
+
+def cycle_to_edge_val(x: list , val:dict):
+    len = x.__len__();
+    mod = []
+
+    if len == 1 :
+        mod.append(val[(x[0] ,x[0])])
+    elif len < 0 :
+        print('Invalid Cycle')
+    elif len == 2:
+        mod.append(val[(x[0] ,x[1])])
+    else:
+        for i in range(len-1):
+            mod.append(val[(x[i] ,x[i+1])])
+
+
+        mod.append(val[(x[len-1] ,x[0])])
+    return mod
+
+
+def tup_cycle_to_edge_val(loops:list , val:dict):
+    edges = []
+    for loop in loops:
+        edges.append(cycle_to_edge_val(loop , val))
+    return tuple(edges)
+
+
+
+def loop_cycle_to_edge_val(loops:list , val:dict):
+
+    pass
 
 
 def loop_cycle_to_edge(loops:list):
@@ -161,7 +196,7 @@ def get_intersected(loops_com:list):
         inter = list(reduce(set.intersection, [set(item) for item in loops_com[i]]))
         if inter.__len__() != 0 : #if there is an intersection
             method_two.append(loops_com[i])
-            print("__________Method 2_____________")
+            print("__________Method 2_{}____________".format(i))
             print(loops_com[i])
 
 
@@ -228,5 +263,10 @@ print('***get_max_loop_intersection***')
 nodes = ['y1' , 'y2','y3','y4','y5']
 print (max)
 #print(inter_loops)
-for i in range(inter_loops.__len__()):
-    print(inter_loops[i])
+for i in range(1,inter_loops.__len__()):
+   print(inter_loops[i])
+   print('***********')
+
+
+print('list of values')
+print(cycle_to_edge_val(cy[2], edges_dict))
