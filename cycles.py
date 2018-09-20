@@ -246,6 +246,13 @@ def get_max_loop_intersection(loops:list):
             inter_loops.append(g_inter)
     return [max , inter_loops]
 
+def product_sym(loop:list):
+    """ returns the products of a list of symbols """
+    product = 1
+    for element in loop:
+        product *=element
+    return product
+
 
 
 d = [(1, 2, 3, 4), (2, 3, 4), (3, 4, 5, 6, 7)]
@@ -305,5 +312,14 @@ print('>>>>>>><<<<<<<<<<<<<<<')
 big = big_list_edge_val(inter_loops,edges_dict)
 for b in big :
     print(b)
+uu = [1,5,4]
+mully = reduce(lambda x, y: x * y, uu, 1)
+print('mully')
+print(mully)
 
 
+
+
+jx = big[0]
+print(jx[0])
+print(product_sym(jx[0]))
