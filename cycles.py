@@ -79,7 +79,6 @@ def symbolize(edge_val:list):
         if type(i) == int: #might be double float !!
             sym_list.append(i)
         else:
-            print('not a number')
             x= syms(i)
             sym_list.append(x)
     return sym_list
@@ -120,7 +119,7 @@ def cycle_to_edge_val(x: list , val:dict):
         for i in range(len-1):
             mod.append(val[(x[i] ,x[i+1])])
         mod.append(val[(x[len-1] ,x[0])])
-    return mod
+    return symbolize(mod)
 
 
 def tup_cycle_to_edge_val(loops:list , val:dict):
@@ -306,18 +305,5 @@ print('>>>>>>><<<<<<<<<<<<<<<')
 big = big_list_edge_val(inter_loops,edges_dict)
 for b in big :
     print(b)
-'''
-type(edge_val[i]) != int:
-edge_val = ['g1','g2','g3','g4']
-sym_list = []
-for i in range(edge_val.__len__()):
-
-        x = syms(edge_val[i])
-    #else:
-     #   x=edge_val[i]
-
-   # print(x)
-
-'''
 
 
