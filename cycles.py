@@ -45,6 +45,7 @@ g1,g2,g3,g4 = syms('g1 g2 g3 g4')
 st_sy = ['g1','g2','g3','g4']
 sy_val = [g1 , g2,g3,g4]
 sy_dict = dict(zip(st_sy ,sy_val ))
+
 print(sy_dict['g2']+g2)
 print(simplify(sy+2*y*sy)/sy)
 
@@ -84,19 +85,14 @@ def cycle_to_edge(x: list):
     #print(len)
 
     if len == 1 :
-        #print("({} , {})".format(x[0] , x[0]))
         edges.append((x[0] ,x[0]))
     elif len < 0 :
         print('Invalid Cycle')
     elif len == 2:
-        #print('({} , {})'.format(x[0],x[1]))
-        edges.append((x[0] ,x[1]))
+         edges.append((x[0] ,x[1]))
     else:
         for i in range(len-1):
-            #print('({} , {})'.format(x[i],x[i+1]))
-            edges.append((x[i] ,x[i+1]))
-
-        #print('({} , {})'.format(x[len-1],x[0]))
+             edges.append((x[i] ,x[i+1]))
         edges.append((x[len-1] ,x[0]))
 
     return edges
@@ -115,8 +111,6 @@ def cycle_to_edge_val(x: list , val:dict):
     else:
         for i in range(len-1):
             mod.append(val[(x[i] ,x[i+1])])
-
-
         mod.append(val[(x[len-1] ,x[0])])
     return mod
 
@@ -127,6 +121,12 @@ def tup_cycle_to_edge_val(loops:list , val:dict):
         edges.append(cycle_to_edge_val(loop , val))
     return tuple(edges)
 
+
+def list_tup_edge_val(loops:list , val:dict):
+    edges = []
+    for loop in loops:
+        edges.append(tup_cycle_to_edge_val(loop , val))
+    return (edges)
 
 
 def loop_cycle_to_edge_val(loops:list , val:dict):
@@ -271,7 +271,8 @@ for i in range(1,inter_loops.__len__()):
    print(inter_loops[i])
    print('***********')
 
-
+print(list_tup_edge_val(inter_loops[1], edges_dict))
+print('*********///')
 print('list of values')
 print(cycle_to_edge_val(cy[2], edges_dict))
 print(tup_cycle_to_edge_val(cy , edges_dict))
