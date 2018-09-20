@@ -8,7 +8,7 @@ import itertools
 from functools import reduce
 from typing import List, Any, Tuple
 import networkx as nx
-from sympy import symbols as syms , simplify
+from sympy import symbols as syms, simplify
 
 # ////// 1) Creating a digraph //////////////
 
@@ -41,7 +41,11 @@ print("***dict it***")
 print(edges_dict[('y1','y2')])
 
 sy = syms('x'); y= syms('y')
-
+g1,g2,g3,g4 = syms('g1 g2 g3 g4')
+st_sy = ['g1','g2','g3','g4']
+sy_val = [g1 , g2,g3,g4]
+sy_dict = dict(zip(st_sy ,sy_val ))
+print(sy_dict['g2']+g2)
 print(simplify(sy+2*y*sy)/sy)
 
 # Return a list of cycles (even self loops):
@@ -270,3 +274,4 @@ for i in range(1,inter_loops.__len__()):
 
 print('list of values')
 print(cycle_to_edge_val(cy[2], edges_dict))
+print(tup_cycle_to_edge_val(cy , edges_dict))
