@@ -128,6 +128,20 @@ def list_tup_edge_val(loops:list , val:dict):
         edges.append(tup_cycle_to_edge_val(loop , val))
     return (edges)
 
+def big_list_edge_val(loops:list , val:dict):
+    edges = []
+    indi_loops = loops[0]
+    first_cycle = []
+    #print(indi_loops)
+    for loop in indi_loops:
+        #print(loop)
+        first_cycle.append(cycle_to_edge_val(loop , val))
+    edges.append(first_cycle)
+
+    for i in range(1, loops.__len__()):
+        edges.append(list_tup_edge_val(loops[i] , val))
+    return edges
+
 
 def loop_cycle_to_edge_val(loops:list , val:dict):
 
@@ -267,7 +281,7 @@ print('***get_max_loop_intersection***')
 nodes = ['y1' , 'y2','y3','y4','y5']
 print (max)
 #print(inter_loops)
-for i in range(1,inter_loops.__len__()):
+for i in range(0,inter_loops.__len__()):
    print(inter_loops[i])
    print('***********')
 
@@ -276,3 +290,12 @@ print('*********///')
 print('list of values')
 print(cycle_to_edge_val(cy[2], edges_dict))
 print(tup_cycle_to_edge_val(cy , edges_dict))
+
+
+print('>>>>>>><<<<<<<<<<<<<<<')
+
+
+
+big = big_list_edge_val(inter_loops,edges_dict)
+for b in big :
+    print(b)
