@@ -6,9 +6,9 @@
 
 import itertools
 from functools import reduce
-from typing import List, Any, Tuple
+from typing import List, Any, Tuple, Union
 import networkx as nx
-from sympy import symbols as syms, simplify
+from sympy import symbols as syms, simplify, Symbol
 
 # ////// 1) Creating a digraph //////////////
 
@@ -27,10 +27,12 @@ G.add_edges_from(
 
 # Values of edges:
 val = ['g1','g2','g3','g4',-1,'h1','h2','h3']
+symbols = [G.edges.__len__()]
 
 
 print('******edges*****')
 print(G.edges)
+
 
 edges_dict =  dict(zip(G.edges, val))
 
@@ -41,12 +43,12 @@ print("***dict it***")
 print(edges_dict[('y1','y2')])
 
 sy = syms('x'); y= syms('y')
-g1,g2,g3,g4 = syms('g1 g2 g3 g4')
+f1,f2,f3,f4 = syms('g1 g2 g3 g4')
 st_sy = ['g1','g2','g3','g4']
-sy_val = [g1 , g2,g3,g4]
+sy_val = [f1,f2,f3,f4]
 sy_dict = dict(zip(st_sy ,sy_val ))
 
-print(sy_dict['g2']+g2)
+print(sy_dict['g2']+f2)
 print(simplify(sy+2*y*sy)/sy)
 
 # Return a list of cycles (even self loops):
@@ -79,6 +81,17 @@ for L in range(0, len(stuff) + 1):
 
 # trying to separate cycles into edges : (all right) >> BUT mind invalid cycles
 # done @ 23:32 9/9/2018 :
+def symbolize(edge_val:list):
+    """converts a list of strings to symbols"""
+    sym_list = []
+    for i in range(edge_val.__len__()):
+         print('g')
+         x = syms(edge_val[i]) if type(edge_val[i]) != int else x=edge_val[i]
+         print(x)
+         #sym_list.append(x)
+    #return sym_list
+
+
 def cycle_to_edge(x: list):
     len = x.__len__();
     edges: List[Tuple[Any, Any]] = []
@@ -173,7 +186,6 @@ def index_to_list(indexes:list , take:tuple):
     for i in range(indexes.__len__()):
         converted.append(take[indexes[i]])
     return converted
-
 
 
 # get list of combinations for (1,2,3,4,...)loops
@@ -299,3 +311,6 @@ print('>>>>>>><<<<<<<<<<<<<<<')
 big = big_list_edge_val(inter_loops,edges_dict)
 for b in big :
     print(b)
+
+print(symbolize(val))
+
