@@ -119,7 +119,8 @@ def cycle_to_edge_val(x: list , val:dict):
         for i in range(len-1):
             mod.append(val[(x[i] ,x[i+1])])
         mod.append(val[(x[len-1] ,x[0])])
-    return symbolize(mod)
+
+    return product_sym(symbolize(mod))
 
 
 def tup_cycle_to_edge_val(loops:list , val:dict):
@@ -247,11 +248,16 @@ def get_max_loop_intersection(loops:list):
     return [max , inter_loops]
 
 def product_sym(loop:list):
-    """ returns the products of a list of symbols """
-    product = 1
-    for element in loop:
-        product *=element
-    return product
+    """ returns the products of a list:cycle of symbols """
+    mul_list = []
+    if loop.__len__() == 1:
+        return loop[0]
+    else:
+        product = 1
+        for element in loop:
+            product *=element
+        mul_list.append(product)
+        return list(mul_list)
 
 
 
@@ -301,25 +307,38 @@ for i in range(0,inter_loops.__len__()):
 print(list_tup_edge_val(inter_loops[1], edges_dict))
 print('*********///')
 print('list of values')
-print(cycle_to_edge_val(cy[2], edges_dict))
-print(tup_cycle_to_edge_val(cy , edges_dict))
+#print(cycle_to_edge_val(cy[2], edges_dict))
+#print(tup_cycle_to_edge_val(cy , edges_dict))
 
 
 print('>>>>>>><<<<<<<<<<<<<<<')
 
+kk = inter_loops[0]
+print(kk[0])
 
 
+print('*****big******')
 big = big_list_edge_val(inter_loops,edges_dict)
 for b in big :
     print(b)
+print('********************************end of big***************************************************')
+
+
 uu = [1,5,4]
 mully = reduce(lambda x, y: x * y, uu, 1)
 print('mully')
 print(mully)
 
 
-
-
+"""
 jx = big[0]
 print(jx[0])
-print(product_sym(jx[0]))
+ui= product_sym(jx[0])
+uj = product_sym(jx[1])
+print(ui)
+print(uj)
+print(ui*uj)
+print(simplify(ui*uj))
+
+"""
+
