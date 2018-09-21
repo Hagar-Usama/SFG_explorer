@@ -257,13 +257,29 @@ def product_sym(loop:list):
         for element in loop:
             product *=element
         mul_list.append(product)
-        return list(mul_list)
+        return product
 
 
 
 d = [(1, 2, 3, 4), (2, 3, 4), (3, 4, 5, 6, 7)]
 
+def product_tup(loops:list):
+    """ multiplies each element in a tuple by each other
+       EX : [(g3*g4*h1, -g1*g3*g4*h3), (g3*g4*h1, -g4*h2), (-g1*g3*g4*h3, -g4*h2), (-g1*g3*g4*h3, g2)]>>
+       [-g1*g3**2*g4**2*h1*h3, -g3*g4**2*h1*h2, g1*g3*g4**2*h2*h3, -g1*g2*g3*g4*h3]
+    """
+    mul_edges = []
+    for loop in loops:
+        mul_edges.append(product_sym(loop))
+    return mul_edges
 
+def big_product(loops:list):
+    mul_edges = []
+    mul_edges.append(loops[0])
+    if(loops.__len__()>1):
+        for i in range(1,loops.__len__()):
+            mul_edges.append(product_tup(loops[i]))
+        return mul_edges
 
 '''
 trial_loop_com = list(itertools.combinations(range(6), 3))
@@ -322,6 +338,16 @@ big = big_list_edge_val(inter_loops,edges_dict)
 for b in big :
     print(b)
 print('********************************end of big***************************************************')
+
+
+print(product_tup(big[1]))
+
+print("&&&&&&&&&&&&&&&&")
+bbig = big_product(big)
+for b in bbig:
+    print(b)
+
+print('ooooooooooooooooooooooooooooooooooooooooooooooooo')
 
 
 uu = [1,5,4]
