@@ -281,6 +281,19 @@ def big_product(loops:list):
             mul_edges.append(product_tup(loops[i]))
         return mul_edges
 
+def sym_sum(loops:list):
+    """ gets summation of a list of symbols"""
+    sum = 0
+    if(loops.__len__() == 1):
+        return loops[0]
+    else:
+        for loop in loops:
+            sum +=loop
+    return sum
+
+def add_sym(loops:list):
+    final_edges = []
+    pass
 '''
 trial_loop_com = list(itertools.combinations(range(6), 3))
 print(trial_loop_com)
@@ -348,7 +361,7 @@ for b in bbig:
     print(b)
 
 print('ooooooooooooooooooooooooooooooooooooooooooooooooo')
-
+print(sym_sum(bbig[0]))
 
 uu = [1,5,4]
 mully = reduce(lambda x, y: x * y, uu, 1)
