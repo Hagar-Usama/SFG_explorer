@@ -363,9 +363,22 @@ for b in bbig:
     print(b)
 
 print('ooooooooooooooooooooooooooooooooooooooooooooooooo')
-print(add_sym(bbig)) # form before last
+bef_last = add_sym(bbig)
+print(bef_last) # form before last
 
+def list_generator(max:int):
+    """ generates a list of numbers from 0 to max """
+    num_list = []
+    for i in range (1,max+1):
+        num_list.append(i)
+    return num_list
 
+def get_delta(loops:list):
+    nums = list_generator(loops.__len__())
+    delta =list(map(lambda x, y: x *(-1)**y, loops, nums))
+    return 1-delta[0]
+
+print(get_delta(bef_last))
 uu = [1,5,4]
 mully = reduce(lambda x, y: x * y, uu, 1)
 print('mully')
