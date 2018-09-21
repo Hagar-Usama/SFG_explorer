@@ -293,7 +293,9 @@ def sym_sum(loops:list):
 
 def add_sym(loops:list):
     final_edges = []
-    pass
+    for loop in loops:
+        final_edges.append(sym_sum(loop))
+    return final_edges
 '''
 trial_loop_com = list(itertools.combinations(range(6), 3))
 print(trial_loop_com)
@@ -361,7 +363,7 @@ for b in bbig:
     print(b)
 
 print('ooooooooooooooooooooooooooooooooooooooooooooooooo')
-print(sym_sum(bbig[0]))
+print(add_sym(bbig))
 
 uu = [1,5,4]
 mully = reduce(lambda x, y: x * y, uu, 1)
