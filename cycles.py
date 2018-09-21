@@ -363,7 +363,8 @@ for b in bbig:
     print(b)
 
 print('ooooooooooooooooooooooooooooooooooooooooooooooooo')
-print(add_sym(bbig))
+print(add_sym(bbig)) # form before last
+
 
 uu = [1,5,4]
 mully = reduce(lambda x, y: x * y, uu, 1)
