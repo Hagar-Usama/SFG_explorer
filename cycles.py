@@ -21,12 +21,12 @@ G.add_nodes_from(["y1", "y2", "y3", "y4", "y5"])
 y1 ,y2,y3,y4,y5 = syms('y1 y2 y3 y4 y5')
 
 G.add_edges_from(
-    [('y1' , 'y2'), ("y2", "y3"), ("y3", "y4"), ("y4", "y5"), ("y5", "y3"), ("y5", "y1"), ("y4", "y2") ,('y1','y1')])
+    [('y1' , 'y2'), ("y2", "y3"), ("y3", "y4"), ("y4", "y5"), ("y5", "y1"), ("y4", "y2"),('y3','y5')])
 
 
 
 # Values of edges:
-val = ['g1','g2','g3','g4',-1,'h1','h2','h3']
+val = ['g1','g2','g3','g4',-1,'h2','h3']
 symbols = [G.edges.__len__()]
 
 
@@ -247,6 +247,14 @@ def get_max_loop_intersection(loops:list):
             inter_loops.append(g_inter)
     return [max , inter_loops]
 
+def path_cycle_intersection(paths:list ,cycles:list):
+
+    pass
+def single_path_cylce_intersection(path:list , cycles:list):
+    path = set(path); cycles = set(path)
+    for cycle in cycles:
+        print(set.intersection(path,cycle))
+
 def product_sym(loop:list):
     """ returns the products of a list:cycle of symbols """
     mul_list = []
@@ -329,6 +337,7 @@ print(get_intersected_loops_to_path(p[0],cy))
 print('***get_max_loop_intersection***')
 [max , inter_loops] = get_max_loop_intersection(cy)
 nodes = ['y1' , 'y2','y3','y4','y5']
+print("Max :")
 print (max)
 #print(inter_loops)
 for i in range(0,inter_loops.__len__()):
@@ -376,24 +385,15 @@ def list_generator(max:int):
 def get_delta(loops:list):
     nums = list_generator(loops.__len__())
     delta =list(map(lambda x, y: x *(-1)**y, loops, nums))
-    return 1-delta[0]
+    return  1-delta[0]
 
 print(get_delta(bef_last))
+
+"""
 uu = [1,5,4]
 mully = reduce(lambda x, y: x * y, uu, 1)
 print('mully')
 print(mully)
 
-
 """
-jx = big[0]
-print(jx[0])
-ui= product_sym(jx[0])
-uj = product_sym(jx[1])
-print(ui)
-print(uj)
-print(ui*uj)
-print(simplify(ui*uj))
-
-"""
-
+print("cycle_path_inter")
