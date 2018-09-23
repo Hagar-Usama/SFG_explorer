@@ -211,14 +211,17 @@ def is_non_touching(loop_com:list):
         print('f')
     pass
 def is_non_touching(loops_tuple:tuple):
+    """ returns a list containing tuples of non-touching loops"""
     inter = set(loops_tuple[0])
     #for i in range(loops_tuple.__len__()-1):
     #    inter = inter ^ loops_tuple[i+1]
     loops = get_loop_combin(list(loops_tuple),2)
     print('loops combinations in  non-touching')
-    
+    inter_pos = []
     for loop in loops:
-        inter = set(loop[0]) ^ set(loop[1])
+        loop_pairs = list(reduce(set.intersection, [set(item) for item in loop]))
+        inter_pos.append(loop_pairs)
+    print(inter_pos)
 
 #returns a list containing tuples of intersected loops
 def get_intersected(loops_com:list):
