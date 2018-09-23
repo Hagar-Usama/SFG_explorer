@@ -3,7 +3,8 @@
 #https://stackoverflow.com/questions/1708510/python-list-vs-tuple-when-to-use-each
 #https://stackoverflow.com/questions/209840/convert-two-lists-into-a-dictionary-in-python
 #https://docs.sympy.org/latest/tutorial/manipulation.html
-
+#mason's formula:
+# https://www.youtube.com/watch?v=kww27GEg4_U
 import itertools
 from functools import reduce
 from typing import List, Any, Tuple, Union
@@ -203,6 +204,22 @@ def is_intersected(loops_com):
 def is_intersected(path:list , loop:list):
     return True if set(path)&set(loop)  else False
 
+def is_non_touching(loop_com:list):
+    """ returns a list containing tuples of non-touching loops"""
+    ''' ex : [(['y3', 'y5', 'y1', 'y2'], ['y3', 'y4', 'y2'], ['y3', 'y4', 'y5', 'y1', 'y2'])]'''
+    for tup in loop_com:
+        print('f')
+    pass
+def is_non_touching(loops_tuple:tuple):
+    inter = set(loops_tuple[0])
+    #for i in range(loops_tuple.__len__()-1):
+    #    inter = inter ^ loops_tuple[i+1]
+    loops = get_loop_combin(list(loops_tuple),2)
+    print('loops combinations in  non-touching')
+    
+    for loop in loops:
+        inter = set(loop[0]) ^ set(loop[1])
+
 #returns a list containing tuples of intersected loops
 def get_intersected(loops_com:list):
     intersected = []
@@ -251,9 +268,13 @@ def path_cycle_intersection(paths:list ,cycles:list):
 
     pass
 def single_path_cylce_intersection(path:list , cycles:list):
-    path = set(path); cycles = set(path)
+    path = set(path)
     for cycle in cycles:
-        print(set.intersection(path,cycle))
+        inter = path&set(cycle)
+
+
+
+
 
 def product_sym(loop:list):
     """ returns the products of a list:cycle of symbols """
@@ -323,6 +344,8 @@ print(lnc)
 print('***get_loop_combine***')
 loop_com = get_loop_combin(cy,3)
 print(loop_com)
+print(get_loop_combin(cy,2))
+print(get_loop_combin(cy,1))
 
 # get_intersected:
 print('\n***get_intersected***')
@@ -387,13 +410,5 @@ def get_delta(loops:list):
     delta =list(map(lambda x, y: x *(-1)**y, loops, nums))
     return  1-delta[0]
 
-print(get_delta(bef_last))
-
-"""
-uu = [1,5,4]
-mully = reduce(lambda x, y: x * y, uu, 1)
-print('mully')
-print(mully)
-
-"""
-print("cycle_path_inter")
+print("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq")
+is_non_touching((['y3', 'y5', 'y1', 'y2'], ['y3', 'y4', 'y2'], ['y3', 'y4', 'y5', 'y1', 'y2']))
