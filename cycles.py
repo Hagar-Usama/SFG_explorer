@@ -223,6 +223,8 @@ def is_non_touching(loops_tuple:tuple):
         inter_pos.append(loop_pairs)
     print(inter_pos)
 
+def hold_things(x):
+    pass
 #returns a list containing tuples of intersected loops
 def get_intersected(loops_com:list):
     intersected = []
