@@ -1,12 +1,14 @@
-# SFG_explorer
+# SFG Explorer
+check the stability of your system
 
+![First-Python][1] 🙈  ![Purpose-Education][2]  ![Control-Stability][3]
 
-![Build-Faluire][1]  ![Purpose-Education][2]  ![Control-Stability][3]
+![Status-in progress][4]
 
-[1]: https://img.shields.io/:Build-Faluire-maroon.svg?style=round-square
+[1]: https://img.shields.io/:Fisrt-python-darkyellow.svg?style=round-square
 [2]: https://img.shields.io/:Purpose-Education-yellow.svg?style=round-square
 [3]: https://img.shields.io/:Control-stability-blue.svg?style=round-square
-
+[4]: https://img.shields.io/:Status-in_progress-green.svg?style=round-square
 
 ---
 
@@ -40,11 +42,14 @@
 
 The project is meant to solve the signal-flow graphs. You input a graph and get the transfer function, status of the system (stable/unstable). 🙌
 
+
+
 ---
 
 ## Technologies
 
-* TBD
+* Unlike the other programs, you add the formula (you enter symbols not numbers)
+
 ---
 
 ## Launch
@@ -66,7 +71,7 @@ The project is meant to solve the signal-flow graphs. You input a graph and get 
 ---
 
 ## Bugs 🐞
-* Big 0001 : symbols not working
+* Big 0001 : symbols not working (syms)
 
 ---
 
