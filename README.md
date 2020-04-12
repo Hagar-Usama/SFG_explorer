@@ -1,7 +1,7 @@
 # SFG_explorer
 
 
-![Build-Faluire][1]  ![Purpose-Education][2]  ![Control-stability][3]
+![Build-Faluire][1]  ![Purpose-Education][2]  ![Control-Stability][3]
 
 [1]: https://img.shields.io/:Build-Faluire-maroon.svg?style=round-square
 [2]: https://img.shields.io/:Purpose-Education-yellow.svg?style=round-square
